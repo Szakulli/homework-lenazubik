@@ -56,7 +56,8 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     df = confirmed_cases[["Country/Region", date]].groupby(["Country/Region"]).max().sort_values(by=date, ascending=True, na_position='last').tail(5)
     return list(df.index)[::-1]
 
-
+import datetime
+  
 def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
     """
     Returns the number of countries/regions where the infection count in a given day was the same as the previous day.
@@ -73,5 +74,10 @@ def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
     :return: Number of countries/regions where the count has not changed in a day
     """
     
-    # Your code goes here (remove pass)
-    pass
+    date = datetime.date.today()
+    yesterday = datetime.date.today() + datetime.timedelta(days=-1)
+    d = date.strftime('%-m/%d/%y')
+    y = yesterday.strftime('%-m/%d/%y')
+    
+    new_cases = confirmed_cases.loc[(confirmed_cases[d]-confirmed_cases[y])>0].count()[0]
+    return new_cases
