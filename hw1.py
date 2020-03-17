@@ -28,8 +28,11 @@ def poland_cases_by_date(day: int, month: int, year: int = 2020) -> int:
     :return: Number of cases on a given date as an integer
     """
     
-    # Your code goes here (remove pass)
-    pass
+    date = ''
+    date = str(month)+"/"+str(day)+"/"+str(year)[2:]
+    num_cases = confirmed_cases.loc[confirmed_cases["Country/Region"]=="Poland"][date].tolist()[0]
+    cases = int(num_cases)
+    return cases
 
 
 def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
@@ -48,8 +51,10 @@ def top5_countries_by_date(day: int, month: int, year: int = 2020) -> List[str]:
     :return: A list of strings with the names of the coutires
     """
 
-    # Your code goes here (remove pass)
-    pass
+    date = ''
+    date = str(month)+"/"+str(day)+"/"+str(year)[2:]
+    df = confirmed_cases[["Country/Region", date]].groupby(["Country/Region"]).max().sort_values(by=date, ascending=True, na_position='last').tail(5)
+    return list(df.index)[::-1]
 
 
 def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
