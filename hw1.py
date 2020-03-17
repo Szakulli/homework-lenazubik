@@ -74,10 +74,10 @@ def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
     :return: Number of countries/regions where the count has not changed in a day
     """
     
-    date = datetime.date.today()
-    yesterday = datetime.date.today() + datetime.timedelta(days=-1)
-    d = date.strftime('%-m/%d/%y')
-    y = yesterday.strftime('%-m/%d/%y')
+    date = datetime.date(year, month, day)
+    yesterday = datetime.date(year, month, day) + datetime.timedelta(days=-1)
+    d = date.strftime('%-m/%-d/%y')
+    y = yesterday.strftime('%-m/%-d/%y')
     
     new_cases = confirmed_cases.loc[(confirmed_cases[d]-confirmed_cases[y])>0].count()[0]
-    return new_cases
+    return int(new_cases)
