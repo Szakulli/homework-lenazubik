@@ -79,5 +79,5 @@ def no_new_cases_count(day: int, month: int, year: int = 2020) -> int:
     d = date.strftime('%-m/%-d/%y')
     y = yesterday.strftime('%-m/%-d/%y')
     
-    new_cases = confirmed_cases.loc[(confirmed_cases[d]-confirmed_cases[y])>0].count()[0]
+    new_cases = confirmed_cases.loc[(confirmed_cases[d]-confirmed_cases[y])>0].count()[1]
     return int(new_cases)
