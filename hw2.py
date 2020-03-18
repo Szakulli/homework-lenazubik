@@ -66,7 +66,7 @@ def more_cured_than_deaths_indices(date: datetime.date) -> List[int]:
     """
     
     indicies = []
-    for i in range(0,460):
+    for i in range(0,459):
         if (dfR[format_date(date)][i] > dfD[format_date(date)][i]):
             indicies.append(i)
     return indicies
