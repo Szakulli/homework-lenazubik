@@ -65,6 +65,10 @@ def more_cured_than_deaths_indices(date: datetime.date) -> List[int]:
     :return: A List of integers containing indices of countries which had more cured cases than deaths on a given date
     """
     
-    # Your code goes here
-    pass
+    indicies = []
+    for i in range(0,459):
+        if (dfR[format_date(date)][i] > dfD[format_date(date)][i]):
+            indicies.append(i)
+    return indicies
+
 © 2020 GitHub, Inc.
