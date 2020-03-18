@@ -40,7 +40,7 @@ def countries_with_no_deaths_count(date: datetime.date) -> int:
     :return: Number of countries with no deaths but with active cases on a given date as an integer
     """
     
-    num_no_deaths = dfC.loc[dfC[format_date(date)]!=0].count()[1] - dfD.loc[dfD[format_date(date)]!=0].count()[1]
+    num_no_deaths = dfC.loc[dfC[format_date(date)]>0].count()[1] - dfD.loc[dfD[format_date(date)]>0].count()[1]
     return int(num_no_deaths)
 
 
